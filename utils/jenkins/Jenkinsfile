@@ -146,6 +146,25 @@ node {
 			${remote_definition 'utils/jenkins/pmemkv_linux.jenkins'}
 		}"""
     }
+    stage('posbuildJobTest'){
+        jobDsl scriptText: """pipelineJob("posbuildJobTest") {
+			parameters {
+				${label_param}
+				${branch_param}
+				${type_param}
+				${test_options_param}
+				${test_device}
+				${repo_url_param}
+				${description_param}
+				${coverage_param}
+				${email_options_param}
+			}
+			${gitlab_connection}
+			${environmental_variables}
+			${triggers}
+			${remote_definition 'utils/jenkins/posbuildJobTest.jenkins'}
+		}"""
+    }
     stage('pmemkv_linux_matrix'){
         jobDsl scriptText: """matrixJob("pmemkv_linux_matrix") {
         	parameters {
